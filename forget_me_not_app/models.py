@@ -30,7 +30,7 @@ class Memo(models.Model):
     categories = models.ManyToManyField(Category)
 
     def __str__(self):
-        return self.text
+        return self.title
 
 
 # ここにユーザーモデルは記載しない！（再利用性や複雑な認証をつけるなら別のAPPとして立ち上げたほうが良い）

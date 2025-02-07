@@ -10,6 +10,8 @@ urlpatterns = [
     path('', views.index, name='index'),
     # メモ一覧ページ
     path('memos/', views.memos, name='memos'),
+    # メモ新規作成ページ
+    path('new_memo/', views.new_memo, name='new_memo'),
     # メモ編集のページ
     # path('memos/<int:memo_id>/', views.memo, name='memo'),
 ]
