@@ -1,0 +1,16 @@
+{% extends "forget_me_not_app/base.html" %}
+
+{% block content %}
+<h1>忘れ物メモ一覧</h1>
+
+<p>これであなたも忘れ物ゼロ！</p>
+
+<ul>
+    {% for memo in memos %}
+        <li>{{memo.title}}</li>
+        <p>{{memo.text}}</p>
+    {% empty %}
+        <li>忘れ物はゼロです！</li>
+    {% endfor %}
+</ul>
+{% endblock content %}
