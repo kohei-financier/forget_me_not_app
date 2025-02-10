@@ -35,6 +35,17 @@ def new_memo(request):
 
 
 # 編集画面で使うかも！
-# def memo(request, memo_id):
-#     """1つ1つのメモを表示する"""
-#     memo = Memo.objects.get(id=memo_id)
+def edit_memo(request, memo_id):
+    print(f"memo_id: {memo_id}")
+    """メモを編集する"""
+    memo = Memo.objects.get(id=memo_id)
+    if request.method != 'POST':
+        form = MemoForm(instance=memo)
+    else:
+        form = MemoForm(instance=memo, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('forget_me_not_app:memos')
+    
+    context = {'form': form, 'memo_id': memo.id}
+    return render(request, 'forget_me_not_app/edit_memo.html', context)

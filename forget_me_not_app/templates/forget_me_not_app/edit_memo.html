@@ -1,0 +1,13 @@
+{% extends "forget_me_not_app/base.html" %}
+
+{% block content %}
+<h1>忘れ物メモ編集</h1>
+
+
+<form action="{% url "forget_me_not_app:edit_memo" memo_id %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button name="submit">メモを更新！</button>
+</form>
+
+{% endblock content %}

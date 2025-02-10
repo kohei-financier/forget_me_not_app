@@ -9,6 +9,7 @@
     {% for memo in memos %}
         <li>{{memo.title}}</li>
         <p>{{memo.text}}</p>
+        <p><a href="{% url "forget_me_not_app:edit_memo" memo.id %}">編集する</a></p>
     {% empty %}
         <li>忘れ物はゼロです！</li>
     {% endfor %}
