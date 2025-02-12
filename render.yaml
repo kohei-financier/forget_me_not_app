@@ -10,7 +10,7 @@ services:
     name: forget_me_not
     runtime: python
     buildCommand: "./build.sh"
-    startCommand: 'gunicorn lforget_me_not.asgi:application -k uvicorn.workers.UvicornWorker' #プロジェクト名に変更
+    startCommand: 'gunicorn forget_me_not.asgi:application -k uvicorn.workers.UvicornWorker' #プロジェクト名に変更
 
     envVars:
       - key: DATABASE_URL
