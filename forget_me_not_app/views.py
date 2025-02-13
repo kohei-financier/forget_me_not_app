@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from .models import Memo
-from .forms import MemoForm
+from .forms import MemoForm,CategoryForm
 
 
 # Create your views here.
@@ -61,3 +61,16 @@ def edit_memo(request, memo_id):
     
     context = {'form': form, 'memo_id': memo.id}
     return render(request, 'forget_me_not_app/edit_memo.html', context)
+
+@login_required
+def new_category(request):
+    if request.method != 'POST':
+        form = CategoryForm()
+    else:
+        form = CategoryForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('forget_me_not_app:memos')
+    
+    context = {'form': form }
+    return render(request, 'forget_me_not_app/new_category.html', context)

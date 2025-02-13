@@ -14,4 +14,6 @@ urlpatterns = [
     path("new_memo/", views.new_memo, name="new_memo"),
     # メモ編集のページ
     path("memos/<int:memo_id>/", views.edit_memo, name="edit_memo"),
+    # 新規カテゴリー追加ページ
+    path('new_category/', views.new_category, name="new_category"),
 ]

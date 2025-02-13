@@ -28,10 +28,8 @@ class Memo(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    categories = models.ManyToManyField(Category)
+    categories = models.ManyToManyField(Category, null=True, blank=True)
 
     def __str__(self):
         return self.title
 
-
-# ここにユーザーモデルは記載しない！（再利用性や複雑な認証をつけるなら別のAPPとして立ち上げたほうが良い）
