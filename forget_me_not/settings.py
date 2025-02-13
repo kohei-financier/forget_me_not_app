@@ -29,20 +29,26 @@ SECRET_KEY = "django-insecure-y(69%lf6^81s96(iffyi-a02e50x)+1jt01+ev#p7or@e7u@96
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['forget-me-not.onrender.com']
+# 開発環境用
+ALLOWED_HOSTS = []
+
+# 本番環境用
+#ALLOWED_HOSTS = ['forget-me-not.onrender.com']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    # myapp
+    "forget_me_not_app",
+    "users",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # myapp
-    "forget_me_not_app",
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -155,6 +161,10 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+LOGIN_URL = 'users:login'
+LOGOUT_REDIRECT_URL = '/'
+
 
 env = environ.Env()
 env.read_env(os.path.join(BASE_DIR, '.env'))

@@ -1,0 +1,17 @@
+{% extends "forget_me_not_app/base.html" %}
+
+{% block content %}
+
+    {% if form.errors %}
+        <p>ユーザー名とパスワードが一致しません。もう一度お試しください。</p>
+    {% endif %}
+
+    <form method="post" action="{% url "users:login" %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button name="submit">ログイン</button>
+        <input type="hidden" name="next" value="{% url "forget_me_not_app:memos" %}" />
+    </form>
+
+{% endblock content %}

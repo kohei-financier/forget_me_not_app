@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from django.http import Http404
 from .models import Memo
 from .forms import MemoForm
 
@@ -8,14 +10,19 @@ def index(request):
     """忘れ物メモのTOPページ（兼 ログイン画面）"""
     return render(request, "forget_me_not_app/index.html")
 
-
-def memos(request):
+@login_required
+def memos(request): # もしかしたらidが引数で必要かもしれない…。
     """忘れ物メモの一覧ページ"""
-    memos = Memo.objects.order_by("created_at")
+    memos = Memo.objects.filter(owner=request.user).order_by("created_at")
+    
+    # 現在のユーザーの投稿のみ表示
+    # if memos.owner != request.user:
+    #     raise Http404
+    
     context = {"memos": memos}
     return render(request, "forget_me_not_app/memos.html", context)
 
-
+@login_required
 def new_memo(request):
     """メモ新規作成ページ"""
 
@@ -26,19 +33,24 @@ def new_memo(request):
         # POSTでデータが送信された処理
         form = MemoForm(data=request.POST)
         if form.is_valid():
-            form.save()
+            new_memo = form.save(commit=False)
+            new_memo.owner = request.user
+            new_memo.save()
             return redirect("forget_me_not_app:memos")
 
     # 空または無効のフォームを表示する
     context = {"form": form}
     return render(request, "forget_me_not_app/new_memo.html", context)
 
-
-# 編集画面で使うかも！
+@login_required
 def edit_memo(request, memo_id):
-    print(f"memo_id: {memo_id}")
-    """メモを編集する"""
+    """メモ編集ページ"""
     memo = Memo.objects.get(id=memo_id)
+    
+    # 現在のユーザーの投稿のみ表示
+    if memo.owner != request.user:
+        raise Http404
+
     if request.method != 'POST':
         form = MemoForm(instance=memo)
     else:
