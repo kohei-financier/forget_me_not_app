@@ -30,10 +30,10 @@ SECRET_KEY = "django-insecure-y(69%lf6^81s96(iffyi-a02e50x)+1jt01+ev#p7or@e7u@96
 DEBUG = True
 
 # 開発環境用
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 
 # 本番環境用
-#ALLOWED_HOSTS = ['forget-me-not.onrender.com']
+ALLOWED_HOSTS = ['forget-me-not.onrender.com']
 
 
 # Application definition
