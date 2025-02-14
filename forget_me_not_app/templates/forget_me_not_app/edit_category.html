@@ -1,0 +1,12 @@
+{% extends "forget_me_not_app/base.html" %}
+
+{% block content %}
+<h1>忘れ物カテゴリー編集</h1>
+
+<form action="{% url "forget_me_not_app:edit_category" category_id %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button name="submit">カテゴリーを編集！</button>
+</form>
+
+{% endblock content %}

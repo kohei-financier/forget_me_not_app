@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
-from .models import Memo
+from .models import Memo,Category
 from .forms import MemoForm,CategoryForm
 
 
@@ -14,10 +14,6 @@ def index(request):
 def memos(request): # もしかしたらidが引数で必要かもしれない…。
     """忘れ物メモの一覧ページ"""
     memos = Memo.objects.filter(owner=request.user).order_by("created_at")
-    
-    # 現在のユーザーの投稿のみ表示
-    # if memos.owner != request.user:
-    #     raise Http404
     
     context = {"memos": memos}
     return render(request, "forget_me_not_app/memos.html", context)
@@ -74,3 +70,19 @@ def new_category(request):
     
     context = {'form': form }
     return render(request, 'forget_me_not_app/new_category.html', context)
+
+@login_required
+def edit_category(request, category_id):
+    """既存のカテゴリーを編集する"""
+    category = Category.objects.get(id=category_id)
+    
+    if request.method != 'POST':
+        form = CategoryForm(instance=category)
+    else:
+        form = CategoryForm(instance=category, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('forget_me_not_app:memos', category_id=category.id)
+        
+    context = {'category_id': category.id, 'form': form}
+    return render(request, 'forget_me_not_app/edit_category.html', context)
