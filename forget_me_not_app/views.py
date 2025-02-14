@@ -36,6 +36,7 @@ def new_memo(request):
             new_memo = form.save(commit=False)
             new_memo.owner = request.user
             new_memo.save()
+            form.save_m2m()
             return redirect("forget_me_not_app:memos")
 
     # 空または無効のフォームを表示する
@@ -101,7 +102,7 @@ def edit_category(request, category_id):
         form = CategoryForm(instance=category, data=request.POST)
         if form.is_valid():
             form.save()
-            return redirect("forget_me_not_app:memos", category_id=category.id)
+            return redirect("forget_me_not_app:memos")
 
     context = {"category_id": category.id, "form": form}
     return render(request, "forget_me_not_app/edit_category.html", context)

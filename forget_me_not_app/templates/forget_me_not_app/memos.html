@@ -3,7 +3,14 @@
 {% block content %}
 <h1>忘れ物メモ一覧</h1>
 
-<p>これであなたも忘れ物ゼロ！</p>
+<p>
+    これであなたも忘れ物ゼロ！  
+    <a href="{% url "forget_me_not_app:new_memo"%}">
+        <button type="button">メモを新規追加する</button>
+    </a>
+</p>
+
+<p>【カテゴリー一覧】</p>
 
 <ul>
     {% for category in categories %}
@@ -12,6 +19,8 @@
         <li>カテゴリーはゼロです！</li>
     {% endfor %}
 </ul>
+
+<p>【忘れ物メモ一覧】</p>
 
 <ul>
     {% for memo in memos %}
@@ -22,10 +31,8 @@
         </li>
         <p>{{memo.text}}</p>
     {% empty %}
-        <li>忘れ物はゼロです！</li>
+        <p>忘れ物はゼロです！</p>
     {% endfor %}
 </ul>
-
-<a href="{% url "forget_me_not_app:new_memo"%}">メモを新規追加する</a>
 
 {% endblock content %}

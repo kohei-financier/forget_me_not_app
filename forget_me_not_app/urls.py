@@ -15,9 +15,9 @@ urlpatterns = [
     # メモ編集のページ
     path("memos/<int:memo_id>/", views.edit_memo, name="edit_memo"),
     # 新規カテゴリー追加ページ
-    path('new_category/', views.new_category, name="new_category"),
+    path("new_category/", views.new_category, name="new_category"),
     # カテゴリー編集ページ
-    path('edit_category/<int:category_id>/', views.edit_category, name='edit_category'),
+    path("edit_category/<int:category_id>/", views.edit_category, name="edit_category"),
     # メモ削除ページ
-    path('delete_memo/<int:memo_id>/', views.delete_memo, name='delete_memo'),
+    path("delete_memo/<int:memo_id>/", views.delete_memo, name="delete_memo"),
 ]

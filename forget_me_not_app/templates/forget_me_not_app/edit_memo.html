@@ -6,7 +6,16 @@
 
 <form action="{% url "forget_me_not_app:edit_memo" memo_id %}" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    <p>{{ form.title.label }}<br>{{ form.title }}</p>
+    <p>{{ form.text.label }}<br>{{ form.text }}</p>
+    <p>{{ form.categories.label }}:</p>
+    {% for category in form.categories.field.queryset %}
+        <label>
+            <input type="radio" name="categories" value="{{ category.id }}" {% if category.id in form.categories.value %}checked{% endif %}>
+            {{ category.name }}
+        </label><br>
+    {% endfor %}
+    <p>{{ form.reminder_time.label }}<br>{{ form.reminder_time }}</p>
     <button name="submit">メモを更新！</button>
 </form>
 <a href="{% url "forget_me_not_app:new_category"%}">カテゴリーを新規追加する</a>
