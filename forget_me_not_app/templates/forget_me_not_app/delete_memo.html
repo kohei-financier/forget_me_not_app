@@ -1,0 +1,18 @@
+{% extends "forget_me_not_app/base.html" %}
+
+{% block content %}
+<h1>忘れ物メモ削除</h1>
+
+<p>下記を本当に削除しますか？</p>
+
+    <p>タイトル：{{memo.title}}</p>
+    <p>メモ：{{memo.text}}</p>
+    <p>カテゴリ：{{memo.category}}</p>
+    <p>リマインダー：{{memo.reminder_time}}</p>
+
+<form action="{% url "forget_me_not_app:delete_memo" memo.id %}" method="post">
+    {% csrf_token %}
+    <button name="submit">メモを削除！</button>
+</form>
+<a href="{% url "forget_me_not_app:memos"%}">メモ一覧に戻る</a>
+{% endblock content %}

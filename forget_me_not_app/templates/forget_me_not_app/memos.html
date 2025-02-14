@@ -15,7 +15,11 @@
 
 <ul>
     {% for memo in memos %}
-        <li>{{memo.title}} <a href="{% url "forget_me_not_app:edit_memo" memo.id %}">編集</a> {{memo.reminder_time}}</li>
+        <li>{{memo.title}} 
+            {{memo.reminder_time}} 
+            <a href="{% url "forget_me_not_app:edit_memo" memo.id %}">編集</a> 
+            <a href="{% url "forget_me_not_app:delete_memo" memo.id %}">削除</a>
+        </li>
         <p>{{memo.text}}</p>
     {% empty %}
         <li>忘れ物はゼロです！</li>
