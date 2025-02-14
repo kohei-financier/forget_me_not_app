@@ -6,10 +6,17 @@
 <p>これであなたも忘れ物ゼロ！</p>
 
 <ul>
+    {% for category in categories %}
+        <p>{{category.name}} <a href="{% url "forget_me_not_app:edit_category" category.id %}">編集</a></p>
+    {% empty %}
+        <li>カテゴリーはゼロです！</li>
+    {% endfor %}
+</ul>
+
+<ul>
     {% for memo in memos %}
-        <li>{{memo.title}}</li>
+        <li>{{memo.title}} <a href="{% url "forget_me_not_app:edit_memo" memo.id %}">編集</a> {{memo.reminder_time}}</li>
         <p>{{memo.text}}</p>
-        <p><a href="{% url "forget_me_not_app:edit_memo" memo.id %}">編集する</a></p>
     {% empty %}
         <li>忘れ物はゼロです！</li>
     {% endfor %}

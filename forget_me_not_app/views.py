@@ -14,8 +14,9 @@ def index(request):
 def memos(request): # もしかしたらidが引数で必要かもしれない…。
     """忘れ物メモの一覧ページ"""
     memos = Memo.objects.filter(owner=request.user).order_by("created_at")
+    categories = Category.objects.order_by("created_at")
     
-    context = {"memos": memos}
+    context = {"memos": memos, "categories": categories}
     return render(request, "forget_me_not_app/memos.html", context)
 
 @login_required
@@ -57,6 +58,13 @@ def edit_memo(request, memo_id):
     
     context = {'form': form, 'memo_id': memo.id}
     return render(request, 'forget_me_not_app/edit_memo.html', context)
+
+# @login_required
+# def categories(request):
+#     categories = Category.objects.filter(owner=request.user).order_by("created_at")
+    
+#     context = {'categories': categories }
+#     return render(request, 'forget_me_not_app/memos.html', context)
 
 @login_required
 def new_category(request):
