@@ -28,7 +28,7 @@ class Memo(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    categories = models.ManyToManyField(Category, null=True, blank=True)
+    categories = models.ManyToManyField(Category, blank=True)
 
     def __str__(self):
         return self.title
