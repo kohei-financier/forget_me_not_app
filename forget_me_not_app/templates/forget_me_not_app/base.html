@@ -1,10 +1,15 @@
+{% load static tailwind_tags %}
+<head>
+    {% tailwind_css %}
+</head>
+<h1 class="bg-gray-800 text-white">Title</h1>
 <p>
     <a href="{% url "forget_me_not_app:index" %}">忘れ物防止アプリ</a>
     {% if user.is_authenticated %}
         こんにちは {{ user.username }}さん
         <form method="post" action="{% url 'users:logout' %}">
-          {% csrf_token %}
-          <button type="submit">ログアウト</button>
+        {% csrf_token %}
+        <button type="submit">ログアウト</button>
         </form>
     {% else %}
         <a href="{% url "users:register" %}">ユーザー登録</a>
