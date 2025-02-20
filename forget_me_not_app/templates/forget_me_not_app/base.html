@@ -1,20 +1,29 @@
 <head>
 {% load static %}
-<link rel="stylesheet" href="{% static "forget_me_not_app/style.css" %}">
+<meta charset="UTF-8" />
+{% comment %} <link rel="stylesheet" href="{% static "forget_me_not_app/css/style.css" %}"> {% endcomment %}
+{% comment %} <script src="https://cdn.tailwindcss.com"></script> {% endcomment %}
+<link href="../static/css/output.css" rel="stylesheet">
+<title>忘れ物メモアプリ</title>
 </head>
-<p>
-    <a href="{% url "forget_me_not_app:index" %}">忘れ物防止アプリ</a>
-    {% if user.is_authenticated %}
-        こんにちは {{ user.username }}さん
-        <form method="post" action="{% url 'users:logout' %}">
-        {% csrf_token %}
-        <button type="submit">ログアウト</button>
-        </form>
-    {% else %}
-        <a href="{% url "users:register" %}">ユーザー登録</a>
-        <a href="{% url "users:login" %}">ログイン</a>
-    {% endif %}
-</p>
+<body>
+  <h1 class="text-3xl font-bold underline">
+    Hello world!
+  </h1>
+    <p>
+        <a href="{% url "forget_me_not_app:index" %}">忘れ物防止アプリ</a>
+        {% if user.is_authenticated %}
+            こんにちは {{ user.username }}さん
+            <form method="post" action="{% url 'users:logout' %}">
+            {% csrf_token %}
+            <button type="submit">ログアウト</button>
+            </form>
+        {% else %}
+            <a href="{% url "users:register" %}">ユーザー登録</a>
+            <a href="{% url "users:login" %}">ログイン</a>
+        {% endif %}
+    </p>
+</body>
 
 {% block content %}
 {% endblock content %}
