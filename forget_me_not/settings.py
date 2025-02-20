@@ -30,10 +30,10 @@ SECRET_KEY = "django-insecure-y(69%lf6^81s96(iffyi-a02e50x)+1jt01+ev#p7or@e7u@96
 DEBUG = True
 
 # 開発環境用
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 
 # 本番環境用
-# ALLOWED_HOSTS = ['forget-me-not.onrender.com']
+ALLOWED_HOSTS = ['forget-me-not.onrender.com']
 
 
 # Application definition
@@ -95,23 +95,23 @@ WSGI_APPLICATION = "forget_me_not.wsgi.application"
 # }
 
 # 開発環境PostgreSQL
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "postgres",
-        "USER": "postgres",
-        "PASSWORD": "hawki9351",
-        "HOST": "localhost",
-        "PORT": "5432",
-    }
-}
-
 # DATABASES = {
-#     'default': dj_database_url.config(
-#         # default='postgresql://ユーザー名:パスワード@localhost:5432/データベース名'
-#         default='postgresql://postgres:hawki9351@localhost:5432/postgres',
-#     )
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": "postgres",
+#         "USER": "postgres",
+#         "PASSWORD": "hawki9351",
+#         "HOST": "localhost",
+#         "PORT": "5432",
+#     }
 # }
+
+DATABASES = {
+    'default': dj_database_url.config(
+        # default='postgresql://ユーザー名:パスワード@localhost:5432/データベース名'
+        default='postgresql://postgres:hawki9351@localhost:5432/postgres',
+    )
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
