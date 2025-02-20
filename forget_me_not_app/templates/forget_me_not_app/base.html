@@ -1,3 +1,7 @@
+<head>
+{% load static %}
+<link rel="stylesheet" href="{% static "forget_me_not_app/style.css" %}">
+</head>
 <p>
     <a href="{% url "forget_me_not_app:index" %}">忘れ物防止アプリ</a>
     {% if user.is_authenticated %}
