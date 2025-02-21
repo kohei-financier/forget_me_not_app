@@ -1,9 +1,11 @@
 {% extends "forget_me_not_app/base.html" %}
 
 {% block content %}
+<article class="prose">
 <h1>忘れ物防止メモアプリ</h1>
 
 <p>これであなたも忘れ物ゼロ！</p>
 
 <a href="{% url "forget_me_not_app:memos" %}">メモ一覧へ！</a>
+</article>
 {% endblock content %}
