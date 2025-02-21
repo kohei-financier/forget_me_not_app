@@ -1,42 +1,52 @@
 {% extends "forget_me_not_app/base.html" %}
 
 {% block content %}
-<h1>忘れ物メモ一覧</h1>
+<article class="prose">
+    <h1>忘れ物メモ一覧</h1>
 
-<p>
-    これであなたも忘れ物ゼロ！  
-    <a href="{% url "forget_me_not_app:new_memo"%}">
-        <button type="button">メモを新規追加する</button>
-    </a>
-    <a href="{% url "forget_me_not_app:new_category"%}">カテゴリーを新規追加する</a>
-</p>
+    <p>
+        これであなたも忘れ物ゼロ！  
+        <a href="{% url "forget_me_not_app:new_memo"%}">
+            <button type="button">メモを新規追加する</button>
+        </a>
+        <a href="{% url "forget_me_not_app:new_category"%}">カテゴリーを新規追加する</a>
+    </p>
 
-<p>【カテゴリー一覧】</p>
+    <p>【カテゴリー一覧】</p>
 
-<ul>
-    {% for category in categories %}
-        <p>{{category.name}} 
-            <a href="{% url "forget_me_not_app:edit_category" category.id %}">編集</a> 
-            <a href="{% url "forget_me_not_app:delete_category" category.id %}">削除</a>
-        </p>
-    {% empty %}
-        <li>カテゴリーはゼロです！</li>
-    {% endfor %}
-</ul>
+    <ul>
+        {% for category in categories %}
+            <p>{{category.name}} 
+                <a role="button" class="btn btn-square btn-xs" href="{% url "forget_me_not_app:edit_category" category.id %}">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                    </svg>
+                </a>
+                <a role="button" class="btn btn-square btn-xs" href="{% url "forget_me_not_app:delete_category" category.id %}">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                    </svg>
+                    </svg>
+                </a>
+            </p>
+        {% empty %}
+            <li>カテゴリーはゼロです！</li>
+        {% endfor %}
+    </ul>
 
-<p>【忘れ物メモ一覧】</p>
+    <p>【忘れ物メモ一覧】</p>
 
-<ul>
-    {% for memo in memos %}
-        <li>{{memo.title}} 
-            {{memo.reminder_time}} 
-            <a href="{% url "forget_me_not_app:edit_memo" memo.id %}">編集</a> 
-            <a href="{% url "forget_me_not_app:delete_memo" memo.id %}">削除</a>
-        </li>
-        <p>{{memo.text}}</p>
-    {% empty %}
-        <p>忘れ物はゼロです！</p>
-    {% endfor %}
-</ul>
-
+    <ul>
+        {% for memo in memos %}
+            <li>{{memo.title}} 
+                {{memo.reminder_time}} 
+                <a href="{% url "forget_me_not_app:edit_memo" memo.id %}">編集</a> 
+                <a href="{% url "forget_me_not_app:delete_memo" memo.id %}">削除</a>
+            </li>
+            <p>{{memo.text}}</p>
+        {% empty %}
+            <p>忘れ物はゼロです！</p>
+        {% endfor %}
+    </ul>
+</article>
 {% endblock content %}

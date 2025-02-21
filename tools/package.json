@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "npx tailwindcss -i C:/Users/0902JP/graduation_work/forget_me_not_app/static/css/tailwind.css -o C:/Users/0902JP/graduation_work/forget_me_not_app/static/css/output.css --watch"
+    "build": "npx tailwindcss -i C:/Users/0902JP/graduation_work/static/css/tailwind.css -o C:/Users/0902JP/graduation_work/static/css/output.css --watch"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +13,7 @@
     "clean-css-cli": "^5.6.3"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.16",
     "autoprefixer": "^10.4.20",
     "daisyui": "^4.12.23",
     "postcss": "^8.5.3",
