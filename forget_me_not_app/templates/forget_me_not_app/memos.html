@@ -8,13 +8,17 @@
     <a href="{% url "forget_me_not_app:new_memo"%}">
         <button type="button">メモを新規追加する</button>
     </a>
+    <a href="{% url "forget_me_not_app:new_category"%}">カテゴリーを新規追加する</a>
 </p>
 
 <p>【カテゴリー一覧】</p>
 
 <ul>
     {% for category in categories %}
-        <p>{{category.name}} <a href="{% url "forget_me_not_app:edit_category" category.id %}">編集</a></p>
+        <p>{{category.name}} 
+            <a href="{% url "forget_me_not_app:edit_category" category.id %}">編集</a> 
+            <a href="{% url "forget_me_not_app:delete_category" category.id %}">削除</a>
+        </p>
     {% empty %}
         <li>カテゴリーはゼロです！</li>
     {% endfor %}

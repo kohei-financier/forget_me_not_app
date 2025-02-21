@@ -1,0 +1,16 @@
+{% extends "forget_me_not_app/base.html" %}
+
+{% block content %}
+<h1>カテゴリー削除</h1>
+
+<p>下記を本当に削除しますか？</p>
+
+    <p>カテゴリー名：{{category.name}}</p>
+
+
+<form action="{% url "forget_me_not_app:delete_category" category.id %}" method="post">
+    {% csrf_token %}
+    <button name="submit">カテゴリーを削除！</button>
+</form>
+<a href="{% url "forget_me_not_app:memos"%}">メモ一覧に戻る</a>
+{% endblock content %}
