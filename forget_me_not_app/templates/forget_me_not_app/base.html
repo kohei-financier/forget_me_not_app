@@ -16,7 +16,7 @@
             こんにちは {{ user.username }}さん
             <form method="post" action="{% url 'users:logout' %}">
             {% csrf_token %}
-            <button type="submit">ログアウト</button>
+            <button  class="btn btn-primary" type="submit">ログアウト</button>
             </form>
         {% else %}
             <a href="{% url "users:register" %}">ユーザー登録</a>
