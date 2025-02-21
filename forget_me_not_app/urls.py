@@ -20,4 +20,6 @@ urlpatterns = [
     path("edit_category/<int:category_id>/", views.edit_category, name="edit_category"),
     # メモ削除ページ
     path("delete_memo/<int:memo_id>/", views.delete_memo, name="delete_memo"),
+    # カテゴリー削除ページ
+    path("delete_category/<int:category_id>/", views.delete_category, name="delete_category"),
 ]

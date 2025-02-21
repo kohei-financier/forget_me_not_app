@@ -106,3 +106,14 @@ def edit_category(request, category_id):
 
     context = {"category_id": category.id, "form": form}
     return render(request, "forget_me_not_app/edit_category.html", context)
+
+@login_required
+def delete_category(request, category_id):
+    category = get_object_or_404(Category, id=category_id)
+
+    if request.method == "POST":
+        category.delete()
+        return redirect(reverse("forget_me_not_app:memos"))
+
+    context = {"category": category}
+    return render(request, "forget_me_not_app/delete_category.html", context)
