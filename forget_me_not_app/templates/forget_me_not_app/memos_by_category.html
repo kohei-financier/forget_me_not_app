@@ -1,0 +1,25 @@
+{% extends "forget_me_not_app/base.html" %}
+
+{% block content %}
+<article class="prose">
+    <h1>{{category.name}}カテゴリーの忘れ物メモ一覧</h1>
+
+    <p>
+        <a href="{% url "forget_me_not_app:new_memo"%}">メモを新規追加する</a>
+        <a href="{% url "forget_me_not_app:new_category"%}">カテゴリーを新規追加する</a>
+    </p>
+
+    <ul>
+        {% for memo in memos %}
+            <li>{{memo.title}} 
+                {{memo.reminder_time}} 
+                <a href="{% url "forget_me_not_app:edit_memo" memo.id %}">編集</a> 
+                <a href="{% url "forget_me_not_app:delete_memo" memo.id %}">削除</a>
+            </li>
+            <p>{{memo.text}}</p>
+        {% empty %}
+            <p>{{category.name}}の忘れ物はゼロです！</p>
+        {% endfor %}
+    </ul>
+</article>
+{% endblock content %}

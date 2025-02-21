@@ -21,6 +21,13 @@ def memos(request):  # もしかしたらidが引数で必要かもしれない�
     context = {"memos": memos, "categories": categories}
     return render(request, "forget_me_not_app/memos.html", context)
 
+@login_required
+def memos_by_category(request, category_id):
+    """特定のカテゴリーに属するメモの一覧ページ"""
+    category = get_object_or_404(Category, id=category_id)
+    memos = Memo.objects.filter(categories=category).order_by("created_at")
+    context = {"category": category, "memos": memos}
+    return render(request, "forget_me_not_app/memos_by_category.html", context)
 
 @login_required
 def new_memo(request):

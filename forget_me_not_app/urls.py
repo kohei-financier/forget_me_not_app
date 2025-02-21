@@ -22,4 +22,6 @@ urlpatterns = [
     path("delete_memo/<int:memo_id>/", views.delete_memo, name="delete_memo"),
     # カテゴリー削除ページ
     path("delete_category/<int:category_id>/", views.delete_category, name="delete_category"),
+    # カテゴリーごとのメモ一覧ページ(一覧ページのカテゴリー検索！)
+    path("memos_by_category/<int:category_id>/", views.memos_by_category, name="memos_by_category"),
 ]
