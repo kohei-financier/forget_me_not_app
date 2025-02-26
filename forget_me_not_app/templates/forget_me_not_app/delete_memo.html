@@ -12,7 +12,7 @@
 
 <form action="{% url "forget_me_not_app:delete_memo" memo.id %}" method="post">
     {% csrf_token %}
-    <button name="submit">メモを削除！</button>
+    <button class="btn btn-error" name="submit">メモを削除！</button>
 </form>
-<a href="{% url "forget_me_not_app:memos"%}">メモ一覧に戻る</a>
+<a class="btn" href="{% url "forget_me_not_app:memos"%}">メモ一覧に戻る</a>
 {% endblock content %}

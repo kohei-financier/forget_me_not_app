@@ -1,11 +1,13 @@
 {% extends "forget_me_not_app/base.html" %}
 
 {% block content %}
-<article class="prose">
-<h1>忘れ物防止メモアプリ</h1>
-
-<p>これであなたも忘れ物ゼロ！</p>
-
-<a href="{% url "forget_me_not_app:memos" %}">メモ一覧へ！</a>
-</article>
+<div class="relative isolate px-6 pt-14 lg:px-8">
+    <div class="text-center">
+        <h1 class="text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-7xl">忘れ物防止メモアプリ</h1>
+        <p class="mt-8 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8">これであなたも忘れ物ゼロ！</p>
+        <div class="mt-10 flex items-center justify-center gap-x-6">
+            <a class="btn btn-primary" href="{% url "forget_me_not_app:memos" %}">メモ一覧へ！</a>
+        </div>
+    </div>
+</div>
 {% endblock content %}

@@ -1,16 +1,33 @@
 {% extends "forget_me_not_app/base.html" %}
+{% load widget_tweaks %}
 
 {% block content %}
 
     {% if form.errors %}
-        <p>ユーザー名とパスワードが一致しません。もう一度お試しください。</p>
+    <div role="alert" class="alert alert-error">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6 shrink-0 stroke-current"
+          fill="none"
+          viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span>ユーザー名とパスワードが一致しません。もう一度お試しください。</span>
+      </div>
     {% endif %}
 
     <form method="post" action="{% url "users:login" %}">
         {% csrf_token %}
-        {{ form.as_p }}
+        <p>ユーザー名</p>
+        <p>{{ form.username|add_class:"input input-bordered w-full max-w-xs" }}</p>
+        <p>パスワード</p>
+        <p>{{ form.password|add_class:"input input-bordered w-full max-w-xs" }}</p>
 
-        <button name="submit">ログイン</button>
+        <button class="btn" name="submit">ログイン</button>
         <input type="hidden" name="next" value="{% url "forget_me_not_app:memos" %}" />
     </form>
 

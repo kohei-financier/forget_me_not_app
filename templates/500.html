@@ -1,0 +1,10 @@
+{% extends "forget_me_not_app/base.html" %}
+
+{% block page_header %}
+    <h1 class="text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-7xl">
+        内部エラーが発生しました。（403）
+    </h1>
+    <a class="btn" href="{% url "forget_me_not_app:index" %}">
+        忘れ物防止アプリへ戻る
+    </a>
+{% endblock page_header %}

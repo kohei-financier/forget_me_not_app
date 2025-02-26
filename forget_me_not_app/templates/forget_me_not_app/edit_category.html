@@ -1,12 +1,14 @@
 {% extends "forget_me_not_app/base.html" %}
+{% load widget_tweaks %}
 
 {% block content %}
 <h1>忘れ物カテゴリー編集</h1>
 
 <form action="{% url "forget_me_not_app:edit_category" category_id %}" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button name="submit">カテゴリーを編集！</button>
+    {{ form.name|add_class:"input input-bordered w-full max-w-xs" }}
+    <button class="btn" name="submit">カテゴリーを編集！</button>
 </form>
+<a class="btn" href="{% url "forget_me_not_app:memos" %}">メモ一覧へ戻る</a>
 
 {% endblock content %}

@@ -1,25 +1,35 @@
 {% extends "forget_me_not_app/base.html" %}
 
 {% block content %}
-<article class="prose">
-    <h1>{{category.name}}カテゴリーの忘れ物メモ一覧</h1>
+<div class="relative isolate px-6 pt-6 lg:px-8">
+    <div class="text-center">
+        <h1 class="text-5xl font-semibold text-balance text-gray-900 sm:text-5xl">{{category.name}}カテゴリーの忘れ物メモ一覧</h1>
 
-    <p>
-        <a href="{% url "forget_me_not_app:new_memo"%}">メモを新規追加する</a>
-        <a href="{% url "forget_me_not_app:new_category"%}">カテゴリーを新規追加する</a>
-    </p>
-
-    <ul>
-        {% for memo in memos %}
-            <li>{{memo.title}} 
-                {{memo.reminder_time}} 
-                <a href="{% url "forget_me_not_app:edit_memo" memo.id %}">編集</a> 
-                <a href="{% url "forget_me_not_app:delete_memo" memo.id %}">削除</a>
-            </li>
-            <p>{{memo.text}}</p>
-        {% empty %}
-            <p>{{category.name}}の忘れ物はゼロです！</p>
-        {% endfor %}
-    </ul>
-</article>
+        <div class="mt-10 flex items-center justify-center gap-x-6">
+            <a class="btn btn-secondary" href="{% url "forget_me_not_app:new_memo"%}">メモを新規追加する</a>
+            <a class="btn btn-accent" href="{% url "forget_me_not_app:new_category"%}">カテゴリーを新規追加する</a>
+        </div>
+        <ul>
+            {% for memo in memos %}
+                <li>{{memo.title}} 
+                    {{memo.reminder_time}} 
+                    <a class="btn btn-square btn-xs" href="{% url "forget_me_not_app:edit_memo" memo.id %}">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                        </svg>
+                    </a> 
+                    <a class="btn btn-square btn-xs" href="{% url "forget_me_not_app:delete_memo" memo.id %}">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                        </svg>
+                    </a>
+                </li>
+                <p>{{memo.text}}</p>
+            {% empty %}
+                <p>{{category.name}}の忘れ物はゼロです！</p>
+            {% endfor %}
+            <a class="btn" href="{% url "forget_me_not_app:memos" %}">メモ一覧へ戻る</a>
+        </ul>
+    </div>
+</div>
 {% endblock content %}

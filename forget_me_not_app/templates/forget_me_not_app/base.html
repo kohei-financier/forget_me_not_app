@@ -1,7 +1,6 @@
-<head>
 {% load static %}
 <meta charset="UTF-8" />
-<link href="{% static 'css/output.css' %}" rel="stylesheet">
+<link href={% static "css/output.css" %} rel="stylesheet">
 <title>忘れ物メモアプリ</title>
 </head>
 <body>
@@ -12,16 +11,17 @@
         {% if user.is_authenticated %}
 
         <div class="flex-none">
-            <ul class="menu menu-horizontal px-1">
-            <li>
-                <form method="post" action="{% url 'users:logout' %}">
-                {% csrf_token %}
-                <li>こんにちは {{ user.username }}さん</li>
-                <input type="submit" value="ログアウト" class="btn"/>
-                </form>
-            </li>
+            <ul class="menu menu-horizontal">
+                <li>
+                    <form method="post" action="{% url 'users:logout' %}">
+                        {% csrf_token %}
+                        <span class="font-base text-lg tracking-tight">こんにちは {{ user.username }}さん</span>
+                        <input type="submit" value="ログアウト" class="btn"/>
+                    </form>
+                </li>
             </ul>
         </div>
+
         {% else %}
         <div class="flex-none">
             <ul class="menu menu-horizontal px-1">

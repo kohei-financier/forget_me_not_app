@@ -1,13 +1,13 @@
 {% extends "forget_me_not_app/base.html" %}
+{% load widget_tweaks %}
 
 {% block content %}
 <h1>忘れ物メモ新規作成</h1>
 
 <form action="{% url "forget_me_not_app:new_memo" %}" method="post">
     {% csrf_token %}
-    {% comment %} {{ form.as_p }} {% endcomment %}
-    <p>{{ form.title.label }}<br>{{ form.title }}</p>
-    <p>{{ form.text.label }}<br>{{ form.text }}</p>
+    <p>{{ form.title.label }}<br>{{ form.title|add_class:"input input-bordered w-full max-w-xs" }}</p>
+    <p>{{ form.text.label }}<br>{{ form.text|add_class:"input input-bordered w-full max-w-xs" }}</p>
     <p>{{ form.categories.label }}:</p>
     {% for category in form.categories.field.queryset %}
         <label>
@@ -15,8 +15,9 @@
             {{ category.name }}
         </label><br>
     {% endfor %}
-    <p>{{ form.reminder_time.label }}<br>{{ form.reminder_time }}</p>
-    <button name="submit">メモを新規作成！</button>
+    <a class="link link-primary" href="{% url "forget_me_not_app:new_category"%}">新しいカテゴリーを追加したい場合はこちら</a>
+    <p>{{ form.reminder_time.label }}<br>{{ form.reminder_time|add_class:"input input-bordered w-full max-w-xs" }}</p>
+    <button class="btn" name="submit">メモを新規作成！</button>
 </form>
-<a href="{% url "forget_me_not_app:new_category"%}">カテゴリーを新規追加する</a>
+<a class="btn" href="{% url "forget_me_not_app:memos" %}">メモ一覧へ戻る</a>
 {% endblock content %}

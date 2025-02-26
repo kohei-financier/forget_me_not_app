@@ -54,7 +54,7 @@ def new_memo(request):
 @login_required
 def edit_memo(request, memo_id):
     """メモ編集ページ"""
-    memo = Memo.objects.get(id=memo_id)
+    memo = get_object_or_404(Memo, id=memo_id)   
 
     # 現在のユーザーの投稿のみ表示
     if memo.owner != request.user:
@@ -101,7 +101,7 @@ def new_category(request):
 @login_required
 def edit_category(request, category_id):
     """既存のカテゴリーを編集する"""
-    category = Category.objects.get(id=category_id)
+    category = get_object_or_404(Category, id=category_id)
 
     if request.method != "POST":
         form = CategoryForm(instance=category)
