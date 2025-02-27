@@ -5,3 +5,4 @@ __pycache__
 *.pyc
 .DS_Store
 .env
+forget_me_not/local_settings.py
